@@ -16,7 +16,7 @@ export default function Home() {
                 <ul className="timeline">
                     <li className="timeline-inverted">
                         <div className="timeline-image">
-                            <img className="rounded-circle img-fluid" src="/ceremony.jpeg" alt="..." />
+                            <img className="rounded-circle img-fluid" src="https://wedding-site-12082023.s3.ap-southeast-2.amazonaws.com/ceremony.jpeg" alt="Ceremony" />
                         </div>
                         <div className="timeline-panel">
                             <div className="timeline-heading">
@@ -26,7 +26,7 @@ export default function Home() {
                         </div>
                     </li>
                     <li className="timeline-inverted">
-                        <div className="timeline-image"><img className="rounded-circle img-fluid" src="/canapes.jpeg" alt="..." /></div>
+                        <div className="timeline-image"><img className="rounded-circle img-fluid" src="https://wedding-site-12082023.s3.ap-southeast-2.amazonaws.com/canapes.jpeg" alt="Canapes" /></div>
                         <div className="timeline-panel">
                             <div className="timeline-heading">
                                 <h4>Canapés & Drinks</h4>
@@ -35,7 +35,7 @@ export default function Home() {
                         </div>
                     </li>
                     <li className="timeline-inverted">
-                        <div className="timeline-image"><img className="rounded-circle img-fluid" src="/reception.jpeg" alt="..." /></div>
+                        <div className="timeline-image"><img className="rounded-circle img-fluid" src="https://wedding-site-12082023.s3.ap-southeast-2.amazonaws.com/reception.jpeg" alt="..." /></div>
                         <div className="timeline-panel">
                             <div className="timeline-heading">
                                 <h4>Reception</h4>

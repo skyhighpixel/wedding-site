@@ -11423,7 +11423,7 @@ header.masthead {
     align-content: center;
   text-align: center;
   color: var(--theme-green);
-  background-image: url("../public/header-image.webp");
+  background-image: url("https://wedding-site-12082023.s3.ap-southeast-2.amazonaws.com/header-image.webp");
   background-repeat: no-repeat;
   background-attachment: scroll;
   background-position: center center;
