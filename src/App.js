@@ -10,7 +10,7 @@ import Rsvp from './Rsvp';
 
 
 export default function App() {
-    console.log('RENDER APP!')
+   
   return (
     <Router>
       <div>

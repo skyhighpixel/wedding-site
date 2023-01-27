@@ -9,8 +9,7 @@ var guestlist = [
   ];
 
 export default function Rsvp() {
-    console.log('rsvp')
-
+  
     const [searchTerm, setSearchTeam] = useState('');
     const [searchResults, setSearchResults] = useState([]);
     const [groupSelected, setGroupSelected] = useState(false);
@@ -41,7 +40,6 @@ export default function Rsvp() {
             return obj.group === group;
         }); //List of guests from that group
 
-        console.log('Guest', value, group, groupList);
 
         setGroupList(groupList);
 
