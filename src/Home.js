@@ -3,7 +3,7 @@ import Head from "./Head";
 import Rsvp from "./Rsvp";
 
 export default function Home() {
-    console.log('home')
+
   return (
     <>
         <Head/>
@@ -16,7 +16,7 @@ export default function Home() {
                 <ul className="timeline">
                     <li className="timeline-inverted">
                         <div className="timeline-image">
-                            <img className="rounded-circle img-fluid" src="/FAN_P3TQ.jpeg" alt="..." />
+                            <img className="rounded-circle img-fluid" src="/ceremony.jpeg" alt="..." />
                         </div>
                         <div className="timeline-panel">
                             <div className="timeline-heading">
@@ -26,7 +26,7 @@ export default function Home() {
                         </div>
                     </li>
                     <li className="timeline-inverted">
-                        <div className="timeline-image"><img className="rounded-circle img-fluid" src="/SandyRick-171.jpeg" alt="..." /></div>
+                        <div className="timeline-image"><img className="rounded-circle img-fluid" src="/canapes.jpeg" alt="..." /></div>
                         <div className="timeline-panel">
                             <div className="timeline-heading">
                                 <h4>Canapés & Drinks</h4>
@@ -35,7 +35,7 @@ export default function Home() {
                         </div>
                     </li>
                     <li className="timeline-inverted">
-                        <div className="timeline-image"><img className="rounded-circle img-fluid" src="/4844153e19d8ad3cbfb2f16e45174fca-xxlarge.jpeg" alt="..." /></div>
+                        <div className="timeline-image"><img className="rounded-circle img-fluid" src="/reception.jpeg" alt="..." /></div>
                         <div className="timeline-panel">
                             <div className="timeline-heading">
                                 <h4>Reception</h4>

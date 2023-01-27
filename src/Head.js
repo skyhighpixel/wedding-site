@@ -5,7 +5,7 @@ import {
   } from "react-router-dom";
 
 export default function Head({isRSVP}) {
-    console.log('head')
+  
   return (
     <>
         <nav className="navbar navbar-expand-lg navbar-dark fixed-top" id="mainNav">

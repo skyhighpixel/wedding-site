@@ -11423,7 +11423,7 @@ header.masthead {
     align-content: center;
   text-align: center;
   color: var(--theme-green);
-  background-image: url("../public/watercolor-leaves-with-empty-space_23-2148867775.webp");
+  background-image: url("/header-image.webp");
   background-repeat: no-repeat;
   background-attachment: scroll;
   background-position: center center;
