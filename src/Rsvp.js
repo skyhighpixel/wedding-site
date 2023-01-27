@@ -1,12 +1,7 @@
-import React, { useEffect, useState } from "react";
-import Head from "./Head";
+import React, { useState } from "react";
 import $ from 'jquery';
+import guestlist from './guests.json';
 
-var guestlist = [
-    { id: 0, group: "chayfam", name: "Srun Chay Ung"},
-    { id: 1, group: "chayfam", name: "Kevin Ung"},
-    { id: 2, group: "wendymario", name: "Mario Huynh", child: true},
-  ];
 
 export default function Rsvp() {
   
@@ -85,8 +80,8 @@ export default function Rsvp() {
                             {!groupSelected && !!searchTerm ?
                                 searchResults.length ? 
                                     <div className="guestselect-container">
-                                    {searchResults.map((guest) => {
-                                        return <div onClick={(event) => onSelectGuest(guest.name)}>{guest.name}</div>
+                                    {searchResults.slice(0, 4).map((guest) => {
+                                        return <div key={guest.id} onClick={(event) => onSelectGuest(guest.name)}>{guest.name}</div>
                                     })}
                                     </div> : <p>Sorry, can't find you</p>
                             : null}
@@ -108,13 +103,13 @@ export default function Rsvp() {
                             <form onSubmit={(event) => onSubmit(event)}>
                                 <div className="guests-container">
                                     {groupList.map((guest) => {
-                                        return <div className="row mb-4">
+                                        return <div className="row mb-4" key={guest.id}>
                                             <div className="col-4">
-                                                <p>{guest.name}{guest.child ? ' (Child)' : ''}</p>
+                                                <p>{guest.name}{guest.baby ? ' (B)' : guest.child ? ' (C)' : ''}</p>
                                             </div>
                                             <div className="col-8">
                                                 <div className="form-check">
-                                                    <input required className="form-check-input" type="radio" value="yes" id={`attending1-${guest.id}`}
+                                                    <input required className="form-check-input" type="radio" value="yes" id={`attending1-${guest.id}`} name={`attending-${guest.id}`}
                                                         onChange={(event) => {
                                                             if (event.target.checked) {
                                                                 setGroupList(groupList.map(g => {
@@ -125,12 +120,12 @@ export default function Rsvp() {
                                                                 }));
                                                             }
                                                         }}/>
-                                                    <label className="form-check-label" for={`attending1-${guest.id}`}>
+                                                    <label className="form-check-label" htmlFor={`attending1-${guest.id}`}>
                                                         Attending
                                                     </label>
                                                     </div>
                                                     <div className="form-check">
-                                                    <input required className="form-check-input" type="radio" value="no" id={`attending2-${guest.id}`}
+                                                    <input required className="form-check-input" type="radio" value="no" id={`attending2-${guest.id}`} name={`attending-${guest.id}`}
                                                     onChange={(event) => {
                                                         if (event.target.checked) {
                                                             setGroupList(groupList.map(g => {
@@ -141,20 +136,20 @@ export default function Rsvp() {
                                                             }));
                                                         }
                                                     }}/>
-                                                    <label className="form-check-label" for={`attending2-${guest.id}`}>
+                                                    <label className="form-check-label" htmlFor={`attending2-${guest.id}`}>
                                                         Can't attend
                                                     </label>
                                                 </div>
                                             
 
-                                                {guest.child && guest.attending ? 
+                                                {guest.child && guest.attending && !guest.baby ? 
                                                 <div className="row g-3 mt-3">
                                                 <div className="col-6">
-                                                    <label for="meal" className="col-form-label mt-0">Meal</label>
+                                                    <label htmlFor="meal" className="col-form-label mt-0">Meal</label>
                                                 </div>
                                                 <div className="col-6">
                                                 <div className="form-check">
-                                                    <input required className="form-check-input" type="radio" value="Pizza" id={`childmeal1-${guest.id}`}
+                                                    <input required className="form-check-input" type="radio" value="Pizza" id={`childmeal1-${guest.id}`} name={`childmeal-${guest.id}`}
                                                         onChange={(event) => {
                                                             if (event.target.checked) {
                                                                 setGroupList(groupList.map(g => {
@@ -165,12 +160,12 @@ export default function Rsvp() {
                                                                 }));
                                                             }
                                                         }}/>
-                                                    <label className="form-check-label" for={`childmeal1-${guest.id}`}>
+                                                    <label className="form-check-label" htmlFor={`childmeal1-${guest.id}`}>
                                                         Pizza
                                                     </label>
                                                     </div>
                                                     <div className="form-check">
-                                                        <input required className="form-check-input" type="radio" value="Fish & Chips" id={`childmeal2-${guest.id}`}
+                                                        <input required className="form-check-input" type="radio" value="Fish & Chips" id={`childmeal2-${guest.id}`} name={`childmeal-${guest.id}`}
                                                             onChange={(event) => {
                                                                 if (event.target.checked) {
                                                                     setGroupList(groupList.map(g => {
@@ -181,7 +176,7 @@ export default function Rsvp() {
                                                                     }));
                                                                 }
                                                             }}/>
-                                                            <label className="form-check-label" for={`childmeal2-${guest.id}`}>
+                                                            <label className="form-check-label" htmlFor={`childmeal2-${guest.id}`}>
                                                                 Fish & Chips
                                                             </label>
                                                     
@@ -189,9 +184,9 @@ export default function Rsvp() {
                                             </div>
                                                 : null}
 
-                                            {guest.attending ? <div className="row g-3 align-items-center mt-3">
+                                            {guest.attending && !guest.baby ? <div className="row g-3 align-items-center mt-3">
                                                     <div className="col-6">
-                                                        <label for="dietery" className="col-form-label">Dietery restrictions</label>
+                                                        <label htmlFor="dietery" className="col-form-label">Dietery restrictions</label>
                                                     </div>
                                                     <div className="col-6">
                                                         <input type="text" id="dietery" className="form-control" placeholder="Vegan, GF, etc."
@@ -211,16 +206,16 @@ export default function Rsvp() {
                                 </div>
 
                                 <div className="mt-4">
-                                    <label for="songrequests" className="form-label">What songs are guaranteed to get you up on the dance floor?</label>
+                                    <label htmlFor="songrequests" className="form-label">What songs are guaranteed to get you up on the dance floor?</label>
                                     <textarea className="form-control" id="songrequests" name="songrequests" rows="3"></textarea>
                                 </div>
 
                                 <div className="mt-4">
-                                    <label for="contact" className="form-label">Email</label>
+                                    <label htmlFor="contact" className="form-label">Email</label>
                                     <input type="email" className="form-control" id="contact" name="contact"/>
                                 </div>
                                 <div className="text-end mt-4">
-                                    <button type="submit" class="btn btn-primary btn-lg">RSVP!</button>
+                                    <button type="submit" className="btn btn-primary btn-lg">RSVP!</button>
                                 </div>
 
                             </form>

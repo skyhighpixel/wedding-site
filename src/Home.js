@@ -91,7 +91,7 @@ export default function Home() {
                         <p className="text-muted">Dress to impress!</p>
                     </div>
                 </div>
-                <div className="google-map-container"><div className="google-map"><iframe width="800" height="250" id="gmap_canvas" src="https://maps.google.com/maps?q=west%20beach%20pavilion&t=&z=15&ie=UTF8&iwloc=&output=embed" frameBorder="0" scrolling="no" marginHeight="0" marginWidth="0"></iframe></div></div>
+                <div className="google-map-container"><div className="google-map"><iframe title="map" width="800" height="250" id="gmap_canvas" src="https://maps.google.com/maps?q=west%20beach%20pavilion&t=&z=15&ie=UTF8&iwloc=&output=embed" frameBorder="0" scrolling="no" marginHeight="0" marginWidth="0"></iframe></div></div>
             </div>
         </section>
         <section className="page-section bg-light" id="wishingwell">
