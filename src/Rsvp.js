@@ -52,7 +52,9 @@ export default function Rsvp() {
 
     const onSubmit = (event) => {
         event.preventDefault();
-        console.log('onsbmit', {guests: groupList, ...objectifyForm($(event.target).serializeArray())});
+        var data = objectifyForm($(event.target).serializeArray());
+        console.log('onsbmit', {guests: groupList, contact: data.contact, songrequests: data.songrequests});
+        $.post('https://3frsl5q2h2.execute-api.ap-southeast-2.amazonaws.com/default/WeddingRSVP', {guests: groupList, contact: data.contact, songrequests: data.songrequests});
     };
 
 
