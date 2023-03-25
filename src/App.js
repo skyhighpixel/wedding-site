@@ -14,9 +14,6 @@ export default function App() {
     <Router>
       <div>
         <Switch>
-          <Route path="/rsvp">
-            <Rsvp />
-          </Route>
           <Route path="/">
             <Home />
           </Route>

@@ -109,6 +109,11 @@ export default function Home() {
        
         
         <Rsvp/>
+
+
+        <div className="footer py-4">
+            <p className="text-muted mb-0">If you have any questions, send us an email: <a href="mailto:ak.wedding1223@gmail.com">ak.wedding1223@gmail.com</a></p>
+        </div>
               
     </>
   );

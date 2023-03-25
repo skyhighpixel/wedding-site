@@ -8,6 +8,7 @@ export default function Rsvp() {
     const [searchTerm, setSearchTeam] = useState('');
     const [searchResults, setSearchResults] = useState([]);
     const [groupSelected, setGroupSelected] = useState(false);
+    const [rsvped, setRsvped] = useState(false);
     const [groupList, setGroupList] = useState([]);
 
 
@@ -35,9 +36,7 @@ export default function Rsvp() {
             return obj.group === group;
         }); //List of guests from that group
 
-
         setGroupList(groupList);
-
     };
 
     const objectifyForm = (formArray) => {
@@ -54,7 +53,23 @@ export default function Rsvp() {
         event.preventDefault();
         var data = objectifyForm($(event.target).serializeArray());
         console.log('onsbmit', {guests: groupList, contact: data.contact, songrequests: data.songrequests});
-        $.post('https://3frsl5q2h2.execute-api.ap-southeast-2.amazonaws.com/default/WeddingRSVP', {guests: groupList, contact: data.contact, songrequests: data.songrequests});
+        
+        $.ajax({
+            url: "https://3frsl5q2h2.execute-api.ap-southeast-2.amazonaws.com/default/RSVP",
+            type: "POST",
+            crossDomain: true,
+            data: JSON.stringify({guests: JSON.stringify(groupList), contact: data.contact, songrequests: data.songrequests}),
+            dataType: "json",
+            contentType:"application/json; charset=utf-8",
+            success: function (response) {
+                console.log('RES', response);
+                setRsvped(true);
+            },
+            error: function (xhr, status) {
+                alert("error");
+                setRsvped('error');
+            }
+        });
     };
 
 
@@ -69,7 +84,14 @@ export default function Rsvp() {
                     
                 </div>
                 
-                {!groupList.length ? 
+                {!!rsvped ? 
+                    <div className="row my-5">
+                        <div className="col-md-4 mx-auto text-center">
+                            <h2>Thank you for confirming</h2>
+                            <p>We hope to see you soon!</p>
+                        </div>
+                    </div>
+                : !groupList.length ? 
                     <div className="row my-4">
                         <div className="col-md-4 mx-auto">
                             <input type="search" 
@@ -123,7 +145,7 @@ export default function Rsvp() {
                                                             }
                                                         }}/>
                                                     <label className="form-check-label" htmlFor={`attending1-${guest.id}`}>
-                                                        Attending
+                                                        Will attend
                                                     </label>
                                                     </div>
                                                     <div className="form-check">
@@ -139,7 +161,7 @@ export default function Rsvp() {
                                                         }
                                                     }}/>
                                                     <label className="form-check-label" htmlFor={`attending2-${guest.id}`}>
-                                                        Can't attend
+                                                        Unable to attend
                                                     </label>
                                                 </div>
                                             
@@ -213,7 +235,8 @@ export default function Rsvp() {
                                 </div>
 
                                 <div className="mt-4">
-                                    <label htmlFor="contact" className="form-label">Email</label>
+                                    <label htmlFor="contact" className="form-label">Email{' '}-{' '}
+                                    <span className="text-muted"><small>We will send the photo gallery after the event</small></span></label>
                                     <input type="email" className="form-control" id="contact" name="contact"/>
                                 </div>
                                 <div className="text-end mt-4">

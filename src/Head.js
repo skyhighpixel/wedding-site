@@ -16,7 +16,7 @@ export default function Head({isRSVP}) {
                     <ul className="navbar-nav text-uppercase ms-auto py-4 py-lg-0">
                         <li className="nav-item"><a className="nav-link" href="#schedule">Schedule</a></li>
                         <li className="nav-item"><a className="nav-link" href="#details">Details</a></li>
-                        {/* <li className="nav-item"><Link className="nav-link" to="/rsvp">RSVP</Link></li> */}
+                        <li className="nav-item"><a className="nav-link" href="#rsvp">RSVP</a></li>
                     </ul>
                 </div>
             </div>
