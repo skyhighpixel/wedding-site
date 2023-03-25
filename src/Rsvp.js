@@ -10,6 +10,7 @@ export default function Rsvp() {
     const [groupSelected, setGroupSelected] = useState(false);
     const [rsvped, setRsvped] = useState(false);
     const [groupList, setGroupList] = useState([]);
+    const [isRsvping, setIsRsvping] = useState(false);
 
 
     const onSearchGuest = (event) => {
@@ -53,7 +54,7 @@ export default function Rsvp() {
         event.preventDefault();
         var data = objectifyForm($(event.target).serializeArray());
         console.log('onsbmit', {guests: groupList, contact: data.contact, songrequests: data.songrequests});
-        
+        setIsRsvping(true);
         $.ajax({
             url: "https://3frsl5q2h2.execute-api.ap-southeast-2.amazonaws.com/default/RSVP",
             type: "POST",
@@ -64,10 +65,11 @@ export default function Rsvp() {
             success: function (response) {
                 console.log('RES', response);
                 setRsvped(true);
+                setIsRsvping(false);
             },
             error: function (xhr, status) {
-                alert("error");
                 setRsvped('error');
+                setIsRsvping(false);
             }
         });
     };
@@ -87,8 +89,15 @@ export default function Rsvp() {
                 {!!rsvped ? 
                     <div className="row my-5">
                         <div className="col-md-4 mx-auto text-center">
-                            <h2>Thank you for confirming</h2>
-                            <p>We hope to see you soon!</p>
+                            {rsvped === 'error' ?
+                                <>
+                                    <h2>Sorry! Something went wrong</h2>
+                                    <p>Please try again</p>
+                                </> 
+                            : <>
+                                <h2>Thank you for confirming</h2>
+                                <p>We hope to see you soon!</p>
+                            </>}
                         </div>
                     </div>
                 : !groupList.length ? 
@@ -134,6 +143,7 @@ export default function Rsvp() {
                                             <div className="col-8">
                                                 <div className="form-check">
                                                     <input required className="form-check-input" type="radio" value="yes" id={`attending1-${guest.id}`} name={`attending-${guest.id}`}
+                                                        disabled={isRsvping}
                                                         onChange={(event) => {
                                                             if (event.target.checked) {
                                                                 setGroupList(groupList.map(g => {
@@ -150,6 +160,7 @@ export default function Rsvp() {
                                                     </div>
                                                     <div className="form-check">
                                                     <input required className="form-check-input" type="radio" value="no" id={`attending2-${guest.id}`} name={`attending-${guest.id}`}
+                                                    disabled={isRsvping}
                                                     onChange={(event) => {
                                                         if (event.target.checked) {
                                                             setGroupList(groupList.map(g => {
@@ -174,6 +185,7 @@ export default function Rsvp() {
                                                 <div className="col-6">
                                                 <div className="form-check">
                                                     <input required className="form-check-input" type="radio" value="Pizza" id={`childmeal1-${guest.id}`} name={`childmeal-${guest.id}`}
+                                                        disabled={isRsvping}
                                                         onChange={(event) => {
                                                             if (event.target.checked) {
                                                                 setGroupList(groupList.map(g => {
@@ -190,6 +202,7 @@ export default function Rsvp() {
                                                     </div>
                                                     <div className="form-check">
                                                         <input required className="form-check-input" type="radio" value="Fish & Chips" id={`childmeal2-${guest.id}`} name={`childmeal-${guest.id}`}
+                                                            disabled={isRsvping}
                                                             onChange={(event) => {
                                                                 if (event.target.checked) {
                                                                     setGroupList(groupList.map(g => {
@@ -214,6 +227,7 @@ export default function Rsvp() {
                                                     </div>
                                                     <div className="col-6">
                                                         <input type="text" id="dietery" className="form-control" placeholder="Vegan, GF, etc."
+                                                        disabled={isRsvping}
                                                         onKeyUp={(event) => {
                                                               setGroupList(groupList.map(g => {
                                                                  if (g.id === guest.id) {
@@ -231,16 +245,16 @@ export default function Rsvp() {
 
                                 <div className="mt-4">
                                     <label htmlFor="songrequests" className="form-label">What songs are guaranteed to get you up on the dance floor?</label>
-                                    <textarea className="form-control" id="songrequests" name="songrequests" rows="3"></textarea>
+                                    <textarea className="form-control" id="songrequests" name="songrequests" rows="3" disabled={isRsvping}></textarea>
                                 </div>
 
                                 <div className="mt-4">
                                     <label htmlFor="contact" className="form-label">Email{' '}-{' '}
                                     <span className="text-muted"><small>We will send the photo gallery after the event</small></span></label>
-                                    <input type="email" className="form-control" id="contact" name="contact"/>
+                                    <input type="email" className="form-control" id="contact" name="contact" disabled={isRsvping}/>
                                 </div>
                                 <div className="text-end mt-4">
-                                    <button type="submit" className="btn btn-primary btn-lg">RSVP!</button>
+                                    <button type="submit" className="btn btn-primary btn-lg" disabled={isRsvping}>{isRsvping ? <i className="fas fa-spin fa-spinner"></i>: 'RSVP!'}</button>
                                 </div>
 
                             </form>

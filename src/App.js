@@ -5,7 +5,6 @@ import {
   Route
 } from "react-router-dom";
 import Home from './Home';
-import Rsvp from './Rsvp';
 
 
 export default function App() {
