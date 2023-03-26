@@ -11831,3 +11831,26 @@ section#contact form#contactForm :-ms-input-placeholder {
 .page-section#rsvp {
   min-height: 100vh;
 }
+
+.countdown-container {
+  display: flex;
+  margin: auto;
+  justify-content: center;
+}
+
+.countdown-container > div {
+  border-radius: 10px;
+  padding: 10px;
+  background-color: rgba(var(--theme-sage-rgb), 0.3);
+  border: 1px solid var(--theme-sage);
+  margin: 10px 5px;
+}
+
+.countdown-container > div h3 {
+  font-size: 35px;
+  margin-bottom: 0;
+}
+
+.countdown-container > div p {
+  margin-bottom: 0;
+}

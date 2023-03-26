@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import $ from 'jquery';
 import guestlist from './guests.json';
+import CountdownTimer from "./CountdownTimer";
 
 
 export default function Rsvp() {
@@ -74,7 +75,7 @@ export default function Rsvp() {
         });
     };
 
-
+    
   return (
     <>
         {/* <Head isRSVP={true}/> */}
@@ -83,7 +84,6 @@ export default function Rsvp() {
                 <div className="text-center">
                     <h2 className="section-heading text-uppercase mb-2">RSVP</h2>
                     <p className="text-muted">Please RSVP by 30 June 2023</p>
-                    
                 </div>
                 
                 {!!rsvped ? 
@@ -95,8 +95,12 @@ export default function Rsvp() {
                                     <p>Please try again</p>
                                 </> 
                             : <>
-                                <h2>Thank you for confirming</h2>
-                                <p>We hope to see you soon!</p>
+                                      <h2>Thank you for confirming</h2>
+                            
+                                      <p>We hope to see you soon!</p>
+                                      
+                                      <CountdownTimer />
+                                      <p>'til the big day</p>
                             </>}
                         </div>
                     </div>

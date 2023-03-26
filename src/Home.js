@@ -29,7 +29,7 @@ export default function Home() {
                         <div className="timeline-image"><img className="rounded-circle img-fluid" src="https://wedding-site-12082023.s3.ap-southeast-2.amazonaws.com/canapes.jpeg" alt="Canapes" /></div>
                         <div className="timeline-panel">
                             <div className="timeline-heading">
-                                <h4>Canapés & Drinks</h4>
+                                <h4>Canapés & Drinks @ 5:30pm</h4>
                             </div>
                             <div className="timeline-body"><p className="text-muted">Relax with some nibbles and drinks</p></div>
                         </div>
@@ -38,7 +38,7 @@ export default function Home() {
                         <div className="timeline-image"><img className="rounded-circle img-fluid" src="https://wedding-site-12082023.s3.ap-southeast-2.amazonaws.com/reception.jpeg" alt="..." /></div>
                         <div className="timeline-panel">
                             <div className="timeline-heading">
-                                <h4>Reception</h4>
+                                <h4>Reception @ 6pm</h4>
                             </div>
                             <div className="timeline-body"><p className="text-muted">Eat! Drink! Dance!</p></div>
                         </div>

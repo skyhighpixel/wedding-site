@@ -1,5 +1,6 @@
 
 import React from "react";
+import CountdownTimer from "./CountdownTimer";
 
 export default function Head({isRSVP}) {
   
@@ -26,9 +27,10 @@ export default function Head({isRSVP}) {
                 <div className="masthead-subheading">
                     You're invited to the wedding of
                 </div>
-                <div className="masthead-heading text-uppercase">Angela & Kieran</div>
+                  <div className="masthead-heading text-uppercase">Angela & Kieran</div>
+                  <CountdownTimer/>
                 <h3>
-                    Saturday 12 August 2023
+                    Saturday, 12 August 2023
                 </h3>
                 {!isRSVP ? <a className="btn btn-primary btn-xl text-uppercase mt-3" href="#rsvp">RSVP</a> : null}
             </div>

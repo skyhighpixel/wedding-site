@@ -5,7 +5,7 @@ import {
   Route
 } from "react-router-dom";
 import Home from './Home';
-
+import Submissions from './Submissions';
 
 export default function App() {
    
@@ -13,8 +13,11 @@ export default function App() {
     <Router>
       <div>
         <Switch>
-          <Route path="/">
+          <Route exact path="/">
             <Home />
+          </Route>
+          <Route exact path="/submissions">
+            <Submissions />
           </Route>
         </Switch>
       </div>

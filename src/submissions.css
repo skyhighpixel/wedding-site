@@ -1,0 +1,20 @@
+.submissions-container table {
+    border-collapse: collapse;
+    width: 100%;
+    font-size: 18px;
+}
+
+.submissions-container thead {
+    background-color: rgba(var(--theme-sage-rgb), 0.1);
+    font-weight: bold;
+    border-bottom: 1px solid var(--theme-sage-rgb);
+}
+
+.submissions-container td,
+.submissions-container th {
+    padding: 8px;
+}
+
+.submissions-container tbody tr:hover {
+    background-color: rgba(var(--theme-sage-rgb), 0.5)!important;
+}
