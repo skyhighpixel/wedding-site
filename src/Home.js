@@ -79,7 +79,7 @@ export default function Home() {
                             <i className="fas fa-car fa-stack-1x fa-inverse"></i>
                         </span>
                         <h4 className="my-3">Getting there</h4>
-                        <p className="text-muted"><strong>Parking:</strong> Plenty of street parking</p>
+                        <p className="text-muted"><strong>Parking:</strong> Street parking. Care Parking</p>
                         <p className="text-muted"><strong>Public transport:</strong> No. 12 tram. 4 mins walk from Cowderoy St/Park St stop. Or no. 96 tram, 8 mins walk from Jacka Bvd/Fitzroy St stop</p>
                     </div>
                     <div className="col-md-4">

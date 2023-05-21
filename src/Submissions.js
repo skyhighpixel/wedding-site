@@ -17,7 +17,11 @@ export default function Submissions() {
             contentType:"application/json; charset=utf-8",
             success: function (response) {
                 console.log('RES', response);
-                setSubmissions(response.data);
+                setSubmissions(response.data.filter(submissions => {
+                    return submissions.submitted;
+                }).sort((a, b) => {
+                    return new Date(b?.submitted) - new Date(a?.submitted);
+                }));
             },
             error: function (xhr, status) {
             
@@ -56,6 +60,7 @@ export default function Submissions() {
                       <th>Dietery</th>
                       <th>Songs</th>
                       <th>Email</th>
+                      <th>Comments</th>
                   </tr>
               </thead>
               <tbody>
@@ -75,12 +80,13 @@ export default function Submissions() {
                           return <tr key={guest.id} style={{
                               backgroundColor: i % 2 ? 'rgba(var(--theme-sage-rgb), 0.1)' : 'rgba(var(--theme-sage-rgb), 0.3)'
                           }}>
-                              <td>{submission.submitted}</td>
+                              <td>{new Date(submission.submitted).toLocaleString()}</td>
                               <td>{guest.name} {guest.baby ? <i className="fas fa-baby"></i> : guest.child ? <i className="fas fa-child"></i> : ''}</td>
                               <td>{guest.attending ? 'Yes' : 'No'}</td>
                               <td>{guest.dietery}</td>
                               <td>{index === 0 ? submission.songrequests : ''}</td>
                               <td>{index === 0 ? submission.contact : ''}</td>
+                              <td>{index === 0 ? submission.comments : ''}</td>
                           </tr>
                       })
                         

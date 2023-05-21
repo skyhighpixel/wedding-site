@@ -9,7 +9,7 @@ export default function Rsvp() {
     const [searchTerm, setSearchTeam] = useState('');
     const [searchResults, setSearchResults] = useState([]);
     const [groupSelected, setGroupSelected] = useState(false);
-    const [rsvped, setRsvped] = useState(false);
+    const [rsvped, setRsvped] = useState(!!localStorage.getItem('rsvped', 1));
     const [groupList, setGroupList] = useState([]);
     const [isRsvping, setIsRsvping] = useState(false);
 
@@ -54,19 +54,20 @@ export default function Rsvp() {
     const onSubmit = (event) => {
         event.preventDefault();
         var data = objectifyForm($(event.target).serializeArray());
-        console.log('onsbmit', {guests: groupList, contact: data.contact, songrequests: data.songrequests});
+        console.log('onsbmit', {guests: groupList, contact: data.contact, songrequests: data.songrequests, comments: data.comments});
         setIsRsvping(true);
         $.ajax({
             url: "https://3frsl5q2h2.execute-api.ap-southeast-2.amazonaws.com/default/RSVP",
             type: "POST",
             crossDomain: true,
-            data: JSON.stringify({guests: JSON.stringify(groupList), contact: data.contact, songrequests: data.songrequests}),
+            data: JSON.stringify({guests: JSON.stringify(groupList), contact: data.contact, songrequests: data.songrequests, comments: data.comments}),
             dataType: "json",
             contentType:"application/json; charset=utf-8",
             success: function (response) {
                 console.log('RES', response);
                 setRsvped(true);
                 setIsRsvping(false);
+                localStorage.setItem('rsvped', 1);
             },
             error: function (xhr, status) {
                 setRsvped('error');
@@ -94,7 +95,10 @@ export default function Rsvp() {
                                     <h2>Sorry! Something went wrong</h2>
                                     <p>Please try again</p>
                                 </> 
-                            : <>
+                                  : <>
+                                      {!!$.find(groupList, (guest) => {
+                                          return !!guest.chinese;
+                                      }) ? <h2>谢谢。希望很快能见到你</h2> : null}
                                       <h2>Thank you for confirming</h2>
                             
                                       <p>We hope to see you soon!</p>
@@ -142,7 +146,7 @@ export default function Rsvp() {
                                     {groupList.map((guest) => {
                                         return <div className="row mb-4" key={guest.id}>
                                             <div className="col-4">
-                                                <p>{guest.name}{guest.baby ? ' (B)' : guest.child ? ' (C)' : ''}</p>
+                                                <p>{guest.name}</p>
                                             </div>
                                             <div className="col-8">
                                                 <div className="form-check">
@@ -159,7 +163,7 @@ export default function Rsvp() {
                                                             }
                                                         }}/>
                                                     <label className="form-check-label" htmlFor={`attending1-${guest.id}`}>
-                                                        Will attend
+                                                        Will attend {!!guest.chinese ? '会来' : ''}
                                                     </label>
                                                     </div>
                                                     <div className="form-check">
@@ -176,12 +180,12 @@ export default function Rsvp() {
                                                         }
                                                     }}/>
                                                     <label className="form-check-label" htmlFor={`attending2-${guest.id}`}>
-                                                        Unable to attend
+                                                        Unable to attend {!!guest.chinese ? '不能来' : ''}
                                                     </label>
                                                 </div>
                                             
 
-                                                {guest.child && guest.attending && !guest.baby ? 
+                                                {/* {guest.child && guest.attending && !guest.baby ? 
                                                 <div className="row g-3 mt-3">
                                                 <div className="col-6">
                                                     <label htmlFor="meal" className="col-form-label mt-0">Meal</label>
@@ -223,7 +227,7 @@ export default function Rsvp() {
                                                     
                                                 </div> </div>
                                             </div>
-                                                : null}
+                                                : null} */}
 
                                             {guest.attending && !guest.baby ? <div className="row g-3 align-items-center mt-3">
                                                     <div className="col-6">
@@ -256,6 +260,11 @@ export default function Rsvp() {
                                     <label htmlFor="contact" className="form-label">Email{' '}-{' '}
                                     <span className="text-muted"><small>We will send the photo gallery after the event</small></span></label>
                                     <input type="email" className="form-control" id="contact" name="contact" disabled={isRsvping}/>
+                                      </div>
+                                      
+                                      <div className="mt-4">
+                                    <label htmlFor="comments" className="form-label">Any other comments?</label>
+                                    <textarea className="form-control" id="comments" name="comments" rows="3" disabled={isRsvping}></textarea>
                                 </div>
                                 <div className="text-end mt-4">
                                     <button type="submit" className="btn btn-primary btn-lg" disabled={isRsvping}>{isRsvping ? <i className="fas fa-spin fa-spinner"></i>: 'RSVP!'}</button>
