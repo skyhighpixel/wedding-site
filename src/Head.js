@@ -8,7 +8,7 @@ export default function Head({isRSVP}) {
     <>
         <nav className="navbar navbar-expand-lg navbar-dark fixed-top" id="mainNav">
             <div className="container">
-                <a className="navbar-brand" href="#page-top">
+                <a className="navbar-brand" href="#top">
                     <img src="/logo.png" alt="A|K"></img></a>
                 <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
                     <i className="fas fa-bars ms-1"></i>
@@ -22,7 +22,7 @@ export default function Head({isRSVP}) {
                 </div>
             </div>
         </nav>
-        <header className="masthead">
+        <header className="masthead" id="top">
             <div className="container">
                 <div className="masthead-subheading">
                     You're invited to the wedding of
