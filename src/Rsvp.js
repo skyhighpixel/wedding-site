@@ -247,6 +247,7 @@ export default function Rsvp() {
                                                     </div>
                                                 </div> : null}
                                             </div>   
+                                            {!!guest.nokids ? <p className="mt-3">Unfortunately, due to venue size, we are unable to accomodate your kiddos</p> : null}
                                         </div>
                                     })}
                                 </div>
