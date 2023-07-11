@@ -17,7 +17,7 @@ export default function Head({isRSVP}) {
                     <ul className="navbar-nav text-uppercase ms-auto py-4 py-lg-0">
                         <li className="nav-item"><a className="nav-link" href="#schedule">Schedule</a></li>
                         <li className="nav-item"><a className="nav-link" href="#details">Details</a></li>
-                        <li className="nav-item"><a className="nav-link" href="#rsvp">RSVP</a></li>
+                        {/* <li className="nav-item"><a className="nav-link" href="#rsvp">RSVP</a></li> */}
                     </ul>
                 </div>
             </div>
@@ -32,7 +32,7 @@ export default function Head({isRSVP}) {
                 <h3>
                     Saturday, 12 August 2023
                 </h3>
-                {!isRSVP ? <a className="btn btn-primary btn-xl text-uppercase mt-3" href="#rsvp">RSVP</a> : null}
+                {/* {!isRSVP ? <a className="btn btn-primary btn-xl text-uppercase mt-3" href="#rsvp">RSVP</a> : null} */}
             </div>
         </header>
 
