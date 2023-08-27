@@ -47,7 +47,10 @@ export default function PhotoGallery() {
       const photobooth = await fetchData("photobooth");
       const couplesphotos = await fetchData("couplesphotos");
 
-      setIsLoading(false);
+      setTimeout(function () {
+        setIsLoading(false);
+      }, 3000);
+
       setPhotoSets({
         guests,
         photobooth,
@@ -70,9 +73,7 @@ export default function PhotoGallery() {
       <section className="page-section photogallery-container" id="gallery">
         <div className="container">
           <div className="text-center">
-            <h2 className="section-heading text-uppercase mb-2">
-              Photo Gallery
-            </h2>
+            <h2 className="section-heading text-uppercase">Photo Gallery</h2>
           </div>
 
           {!isLoading ? (
@@ -94,7 +95,17 @@ export default function PhotoGallery() {
                 );
               })}
             </div>
-          ) : null}
+          ) : (
+            <div className="text-center">
+              <img
+                className="fa-spin"
+                style={{ borderRadius: "100px" }}
+                height={100}
+                src="https://wedding-site-12082023.s3.ap-southeast-2.amazonaws.com/Screenshot+2023-08-27+at+7.12.09+pm.png"
+              />
+              <p>Getting photos..</p>
+            </div>
+          )}
 
           {!isLoading && photos?.length ? (
             <ResponsiveMasonry key={view}>
