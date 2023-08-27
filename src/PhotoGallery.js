@@ -141,6 +141,21 @@ export default function PhotoGallery() {
               open={index >= 0}
               close={() => setIndex(-1)}
               plugins={[Share, Download]}
+              render={{
+                iconLoading: () => {
+                  return (
+                    <div className="text-center">
+                      <img
+                        className="fa-spin"
+                        style={{ borderRadius: "100px" }}
+                        height={100}
+                        src="https://wedding-site-12082023.s3.ap-southeast-2.amazonaws.com/Screenshot+2023-08-27+at+7.12.09+pm.png"
+                      />
+                      <p style={{ color: "#fff" }}>Getting photo..</p>
+                    </div>
+                  );
+                },
+              }}
             />
           ) : null}
         </div>
