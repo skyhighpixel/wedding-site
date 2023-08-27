@@ -11854,3 +11854,84 @@ section#contact form#contactForm :-ms-input-placeholder {
 .countdown-container > div p {
   margin-bottom: 0;
 }
+
+.photogallery-container .card {
+  font-family: 'Raleway';
+  text-align: center;
+  aspect-ratio: 1.5;
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+  border-radius: 0.25rem;
+  cursor: pointer;
+}
+
+.photogallery-container .card .card-body {
+  background: rgba(0, 0, 0, 0.2);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 10px;
+  border: 1px solid #fff;
+  outline: 10px solid rgba(0, 0, 0, 0.2);
+  cursor: pointer;
+}
+
+.photogallery-container .card.active .card-body {
+  margin: 9px;
+  border: 2px solid #fff;
+  background: rgba(0, 0, 0, 0.5);
+  outline-color: rgba(0, 0, 0, 0.5);
+}
+
+.photogallery-container .card .card-body .card-title {
+  font-size: 3em;
+  color: #fff;
+  text-transform: uppercase;
+  font-family: 'Raleway';
+  margin-bottom: 0;
+}
+
+.photogallery-container .cards-row {
+  padding: 0 0 2em 0;
+  margin: 0 0 2em 0;
+  border-bottom: 1px solid #ccc;
+}
+.photogallery-container .cards-row .col-md-4 {
+  padding: 0;
+}
+
+.photogallery-container .cards-row .col-md-4:first-child {
+  padding: 0 2px 0 0;
+}
+
+.photogallery-container .cards-row .col-md-4:last-child {
+  padding: 0 0 0 2px;
+}
+
+@media (max-width: 767.98px) {
+  .photogallery-container .cards-row {
+    margin: 0;
+  }
+  .photogallery-container .cards-row .col-md-4 {
+      padding: 0!important;
+    }
+  .photogallery-container .card .card-body .card-title {
+      font-size: 12px;
+
+    word-wrap: initial;
+  }
+
+    .photogallery-container .card .card-body {
+      margin: 5px;
+      border: 1px solid #fff;
+      height: 0;
+      outline: 5px solid rgba(0, 0, 0, 0.3);
+    }
+
+    .photogallery-container .card.active .card-body,
+    .photogallery-container .card:hover .card-body {
+      margin: 4px;
+      border: 2px solid #fff;
+    }
+}

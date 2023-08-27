@@ -1,14 +1,14 @@
 import React from "react";
+import PhotoGallery from "./PhotoGallery";
 import Head from "./Head";
 import Rsvp from "./Rsvp";
 
 export default function Home() {
-
   return (
     <>
-        <Head/>
-    
-        <section className="page-section bg-light" id="schedule">
+      <Head />
+
+      {/* <section className="page-section bg-light" id="schedule">
             <div className="container">
                 <div className="text-center">
                     <h2 className="section-heading text-uppercase">Schedule</h2>
@@ -105,17 +105,15 @@ export default function Home() {
                     </p></div>
                 </div>
             </div>
-        </section>
-       
-        
-        {/* <Rsvp/> */}
+        </section> */}
 
+      {/* <Rsvp/> */}
 
-        <div className="footer py-4">
+      <PhotoGallery />
+
+      {/* <div className="footer py-4">
             <p className="text-muted mb-0">If you have any questions, send us an email: <a href="mailto:ak.wedding1223@gmail.com">ak.wedding1223@gmail.com</a></p>
-        </div>
-              
+        </div> */}
     </>
   );
 }
-
